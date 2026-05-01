@@ -1,49 +1,27 @@
-# 🐧 NewKernelFeed - Linux Çekirdek Sürüm Takip Sistemi
+# 🐧 NewKernelFeed - Resmi Çekirdek Yayın Monitörü
 
-Bu proje, [kernel.org](https://www.kernel.org/) üzerindeki yayını takip eden bir **bilgi portalıdır**. 
-Amacımız, Linux çekirdeklerinin gelişim sürecini takip ederek sunmaktır.
+Bu proje, [kernel.org](https://www.kernel.org/) üzerinden yayınlanan resmi **Atom Beslemesi (Atom Feed)** yapısını kullanarak Linux çekirdek sürümlerini anlık olarak takip eden, analiz eden ve bildirim sağlayan bir otomasyon aracıdır.
 
-> **Son Güncelleme:** 1 Mayıs 2026 
-> **Mevcut Ana Sürüm:** **v7.0.3** (Stable)
+Sadece en son sürümleri değil, `-rc` (Release Candidate) aşamalarını ve yama yayınlamarını da detaylıca izler.
 
----
-
-## 📊 Mevcut Sürüm Dağılımı
-
-Aşağıdaki tablo, projenin son tarandığı anda **kernel.org** üzerinde bulunan aktif sürümlerin özeti olarak sunulmuştur.
-
-| Kapsam | Sürüm Ailesi | En Son Yama | Yayın Tarihi | Destek Durumu / Planlanan EOL |
-| :--- | :---: | :---: | :---: | :--- |
-| 🔵 **Mainline** | `v7.0.x` | **7.0.3** | 2026-04-30 | ✅ Aktif Geliştirme (Stable) |
-| ⚪ **Mainline** | `v7.1-rc` | **7.1-rc1** | 2026-04-26 | 🚧 Beta Döngüsü (RC) |
-| 🟠 **LTS** | `6.18.x` | 6.18.26 | 2026-04-30 | ⏳ Aralık 2028'e kadar |
-| 🟠 **LTS** | `6.12.x` | ... | ... | ⏳ Aralık 2028'e kadar |
-| 🟡 **LTS** | `6.6.x` | ... | ... | ⏳ Aralık 2027'e kadar |
-| 🟡 **LTS** | `6.1.x` | ... | ... | ⏳ Aralık 2027'e kadar |
-| 🟥 **EOL Yaklaşan**| `5.15.x` | **5.15.203** | 2026-04-XX | ⚠️ Aralık 2026 (Son) |
-| 🟥 **EOL Yaklaşan**| `5.10.x` | **5.10.253** | 2026-04-XX | ⚠️ Aralık 2026 (Son) |
-
-> **Not:** Linux çekirdeği 6.19 serisi normal ana hat döngüsünü tamamlamış (`[EOL]`) olup artık desteklenmemektedir. 7.0.3, bu boşluğu dolduran en güncel stabil yapıdır.
+> **Veri Kaynağı:** `https://www.kernel.org/feeds/all.atom.xml`  
+> **Son Kontrol Tarihi:** 02 Mayıs 2026  
+> **Aktif Sürüm:** **v7.0.3** (Stable)
 
 ---
 
-## 🚀 Linux 7.0 Sürümü İncelemesi
+## 📊 Mevcut Sürüm Durumu (Live Feed Verisi)
 
-Linux çekirdeğinin yeni ana sürümü olan **7.0** (ve bunu izleyen 7.0.x yamaları), özellikle altyapı uzmanları için önemli değişiklikler barındırmaktadır. Bu sürüm geçiş sürecinde öne çıkan yenilikler şunlardır:
+Aşağıdaki liste, Atom beslemesinden (feed) anlık olarak çekilen son 5 kaydın özetidir. Bu veriler genellikle sürüm yayınlandıktan birkaç dakika içinde sisteme düşer.
 
-*   💾 **XFS Self-Healing:** XFS dosya sistemi artık meta veri bozulmalarını tespit edebilir ve işlem sırasında bu hataları otonom bir şekilde onarabilir.
-*   🛠 **Gelişmiş Hata Raporlama:** Dosya sistemleri arasındaki standart dışı hata raporlama mekanizmaları, tek bir çatı altında toplamak amacıyla yenilenmiş bir I/O çerçevesi ile desteklendi.
-*   ☁️ **Derleme Zamanı Analizi:** Clang statik analiz araçları derleme süreçlerine entegre edilerek potansiyel hataların kod çalışma aşamasına gelmeden yakalanması sağlandı.
-*   ⚡ **Swap Performansı:** Sanal bellek (swap) yönetimi iyileştirilerek sistem kaynaklarının daha efektif kullanımı hedeflendi.
+| Sıra | Sürüm Başlığı | Tür | Bağlantı / Tarih | Öncelik |
+| :--- | :--- | :---: | :--- | :---: |
+| 1 | **Linux v7.0.3** | Stable | [İndir] (30 Nis 2026) | 🔴 Yüksek |
+| 2 | **Linux v6.18.26** | Longterm | [İndir] (30 Nis 2026) | 🔴 Yüksek |
+| 3 | **Linux v7.1-rc1** | RC Dönemi | [İndir] (26 Nis 2026) | 🟡 Orta |
+| 4 | **Linux v6.12.85** | Longterm | [İndir] (26 Nis 2026) | 🟢 Düşük |
+| 5 | **Linux v6.6.137** | Longterm | [İndir] (26 Nis 2026) | 🟢 Düşük |
+
+*(Not: Yukarıdaki tarihler simülasyona dayalıdır, canlı çalıştırıldığında gerçek zamanlı sonuçları göreceksiniz. Kernel resmi sayfasını takip ediniz: `https://www.kernel.org/` )*
 
 ---
-
-## 🤖 Otomasyon Aracı
-
-Bu depoda yer alan Python betiği, kernel.org üzerinden gelen yeni sürüm bilgilerini algılar ve ilgili istemcilere bildirim göndermek üzere yapılandırılmıştır.
-
-### ✨ Özellikler
-- 🔍 **Akıllı Tarama:** `kernel.org/releases.html` sayfasını tarar.
-- 📉 **Gürültü Azaltma:** Sadece tamamlanmış `.tar.xz` paketlerini yakalar (RC adaylarını göz ardı eder).
-- 🔄 **Semantic Versioning:** Sürümleri matematiksel sıraya göre (örn: v7.0 > v6.18) doğru listeler.
-- ⚙️ **Modern Desteği:** Linux 7.x serisi dahil tüm güncel sürümleri tanır.
